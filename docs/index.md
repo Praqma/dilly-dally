@@ -83,9 +83,11 @@ To report effectively on all the time logging we need it to be ordered in _cost 
 
 So consequently:
 
-A _GitHub project_ has one _cost center_.
+A _GitHub repository_ has one _cost center_.
 
 A _GitHub Issues Milestone_ correspond to _one delivery_.
+
+We should probably also consider, how a GitHub Project fits into this model.
 
 A _cost center_ will default to the organization that host the repo - to override and assign a different cost center, add it to the the [front matter](https://jekyllrb.com/docs/frontmatter/){: target="blank"} of the `README.md` file in the repo
 
@@ -112,6 +114,18 @@ Example:
 [![:did: example](images/did-example.png)](
 https://github.com/Praqma/dilly-dally/issues/1#issuecomment-306840603
 ){: target="blank"}
+
+### persisted directly in GitHub issues
+
+The idea is to persist this data directly in the GitHub issues. This means that you can actually see - directly on an issue, that somebody logged time on it.
+
+However, it might not be feasible to use the GitHub issue comments as our actual database since it will probably not be efficient enough to retrieve data on demand.
+
+So the idea is to write data to the issue comments using [GitHubs GraphQL API](https://developer.github.com/v4/){: target="blank"}.
+
+To retrieve the data then, we could either get them off the same GraphQL API or we could have a service front some database, that could be continuously synced.
+
+Leaving out the synced database would mean that all queries would have to happen through the GraphQL interface. But it's not likely that is will perform well.
 
 ### Interface
 
